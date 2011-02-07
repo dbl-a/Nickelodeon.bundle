@@ -1,0 +1,53 @@
+1024-60<?xml version="1.0" encoding="UTF-8"?>
+<site site="http://media.mtvnservices.com"
+	    plugin="http://media.mtvnservices.com/player/.*"
+			initialState="playing"
+			version="1.0">
+	
+<!--	<pre m="http://playlists.mtvnservices.com/.*" />  -->
+    
+	<crop x="0" y="0" width="1024" height="738" />
+	<seekbar type="simple">
+		<start x="64" y="758" />
+		<end   x="964" y="758" />
+		<played>
+				<color rgb="666666" />
+		</played>
+	</seekbar>
+	
+	<!-- PLAYING -->
+	<state name="playing">
+		<event>
+			<condition>
+				<command name="pause" />
+			</condition>
+			<action>
+				<click x="15" y="758" />
+				<goto state="paused" />
+			</action>
+		</event>
+	
+		<!-- Video ends -->
+		<event>
+			<condition>
+				<url matches="player/embed/AS3/endslate" />
+			</condition>
+			<action>
+				<goto state="end" />
+			</action>
+		</event>
+	</state>
+
+	<!-- PAUSED -->
+	<state name="paused">
+		<event>
+			<condition>
+				<command name="play" />
+			</condition>
+			<action>
+				<click x="15" y="758" />
+				<goto state="playing" />
+			</action>
+		</event> 
+	</state>
+</site>
